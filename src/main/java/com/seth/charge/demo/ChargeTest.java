@@ -1,24 +1,23 @@
 package com.seth.charge.demo;
 
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 import static com.seth.charge.demo.Chargeable.printResult;
 
 public class ChargeTest {
     public static void main(String[] args) {
 //        test1();
-        Phone[] phones = {new Iphone(), new Android(), new XiaoMi()};
+        List<Phone> phones = new ArrayList<>(Arrays.asList(new Iphone(), new Android(), new XiaoMi()));
+
         Charger charger = new Charger();
         match(charger, phones, Type.values());
     }
 
-    public static void match(Charger charger, Phone[] phones, Type[] types) {
-        List<Phone> phoneList = new ArrayList<>(10000);
-        while (phoneList.size() < 10000) {
-            final Phone phone = phones[new Random().nextInt(phones.length)];
+    public static void match(Charger charger, List<Phone> phones, Type[] types) {
+        List<Phone> phoneList = new ArrayList<>(3);
+        while (phoneList.size() < 3) {
+            final Phone phone = phones.get(new Random().nextInt(phones.size()));
             final ChargingLine chargingLine = new ChargingLine(types[new Random().nextInt(types.length)]);
 
             charger.setChargingCable(chargingLine);
@@ -27,6 +26,7 @@ public class ChargeTest {
             if (charger.getStatus() && phone.isCharging()) {
                 isTrue(phone.isCharging(), phone.toString());
                 phoneList.add(phone);
+                phones.remove(phone);
             }
         }
 

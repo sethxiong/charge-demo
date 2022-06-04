@@ -1,8 +1,10 @@
 package com.seth.charge.demo;
 
 
+import java.util.Objects;
+
 public abstract class Phone {
-    private boolean charging;
+    protected boolean charging;
 
     public Phone() {
     }
@@ -23,7 +25,8 @@ public abstract class Phone {
 
     @Override
     public String toString() {
-        return "Phone{" +
+        return  Integer.toHexString(hashCode())
+                + "@Phone{" +
                 "name=" + getName() + ",\t" +
                 "type=" + getType() + ",\t" +
                 "charging=" + charging +
