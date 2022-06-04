@@ -16,8 +16,8 @@ public class ChargeTest {
     }
 
     public static void match(Charger charger, Phone[] phones, Type[] types) {
-        List<Phone> phoneList = new ArrayList<>(100);
-        while (phoneList.size() < 100) {
+        List<Phone> phoneList = new ArrayList<>(10000);
+        while (phoneList.size() < 10000) {
             final Phone phone = phones[new Random().nextInt(phones.length)];
             final ChargingLine chargingLine = new ChargingLine(types[new Random().nextInt(types.length)]);
 
